@@ -1,0 +1,4 @@
+Place downloaded/authorized NSE historical stock CSV files in this folder.
+Example: RELIANCE.csv, TCS.csv, INFY.csv
+Then import with:
+python -m scripts.import_nse_csv data/nse/RELIANCE.csv --company-name "Reliance Industries Limited" --symbol RELIANCE

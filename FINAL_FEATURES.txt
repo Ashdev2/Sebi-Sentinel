@@ -1,0 +1,50 @@
+SEBI Sentinel 3.0 Automated NSE — Feature List
+==============================================
+
+PRIMARY WORKFLOW
+- Search an NSE stock by symbol or company name
+- Search suggestions come from NSE's official MCP service
+- Analyze automatically retrieves missing historical data; no normal CSV download/import step
+- NSE history is cached in PostgreSQL
+- Automatic retraining when a newly synced stock adds substantial history
+- Up to 5 years of automated historical data through the current NSE Bhavcopy MCP offering
+
+ANALYSIS
+- Isolation Forest anomaly detection
+- Explainable surveillance rule engine
+- Optional known-case classifier when enough verified regulatory case labels are imported
+- Price returns, volume ratio/z-score, volatility, VWAP deviation, trade ratio, delivery ratio
+- Weighted surveillance risk score
+- Possible trading-pattern similarity label
+- Reason codes and possible event sequence
+- Highest-risk trading-day table
+
+DASHBOARD
+- Modern stock-first UI (admin/import controls are hidden in Settings)
+- NSE symbol/company autocomplete
+- 1M / 6M / 1Y / 3Y / 5Y date presets
+- Price + VWAP graph
+- Volume graph
+- Risk/anomaly/rule graph
+- Delivery graph when available
+- Volume ratio graph
+- Trade-count ratio graph when available
+- Live-ish NSE quote when available from CM Market MCP
+- Forensics tab
+- Investigation report tab
+
+REPORTING
+- In-dashboard investigation report preview
+- ReportLab PDF generation
+- Price/VWAP chart, volume chart, surveillance-score chart and activity chart
+- Reasons, possible sequence, high-risk dates, model interpretation and verified case records
+- Browser PDF preview + download
+
+DATA / OPERATIONS
+- PostgreSQL persistence
+- Existing database compatible
+- Optional manual CSV fallback only for offline/older authorized data
+- Verified regulatory case CSV import in Settings
+- MCP diagnostic script: python3.12 -m scripts.test_nse_mcp
+- Python 3.12 compatible
+- No Homebrew required
