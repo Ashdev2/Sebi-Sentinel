@@ -1,0 +1,47 @@
+SEBI SENTINEL 3.0 — AUTOMATED NSE VERSION
+===========================================
+
+THIS VERSION DOES NOT REQUIRE YOU TO DOWNLOAD A STOCK CSV FOR NORMAL USE.
+
+Market-data flow:
+Search stock -> Official NSE MCP -> automatic 5-year history retrieval -> PostgreSQL cache -> ML -> graphs -> report -> PDF
+
+1) Open Terminal and enter this folder:
+
+   cd ~/Desktop/sebi_sentinel_auto
+
+2) Install/update packages (no venv required):
+
+   python3.12 -m pip install --user -r requirements.txt
+
+3) Keep Postgres.app running.
+
+4) Initialize/update tables (safe with your existing sebi_sentinel database):
+
+   python3.12 -m scripts.init_db
+
+5) Start the app:
+
+   python3.12 -m uvicorn app.main:app --reload
+
+6) Open:
+
+   http://127.0.0.1:8000
+
+7) Type an NSE symbol such as:
+
+   LTM
+   RELIANCE
+   TCS
+   INFY
+
+The search suggestions are retrieved from NSE's official MCP service. When you click Analyze stock, the application automatically retrieves missing NSE history and stores it in PostgreSQL before running the model.
+
+If NSE connectivity ever fails, test the official MCP endpoints with:
+
+   python3.12 -m scripts.test_nse_mcp
+
+CSV upload is now only an optional fallback under Settings for offline/older data.
+
+IMPORTANT DATA LIMIT:
+NSE currently advertises 5 years of historical data through its Bhavcopy MCP. The dashboard therefore automates the latest five years. Older history can still be added from licensed/authorized historical sources using the fallback importer.

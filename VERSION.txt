@@ -1,0 +1,7 @@
+SEBI Sentinel 3.0.1 - Automated NSE MCP Fix
+
+Fixes:
+- Recognizes NSE get_stock_history schema: symbol + months(max 3) + endDate.
+- Automatically chains 3-month chunks for longer date ranges (up to NSE MCP's advertised 5-year history).
+- test_nse_mcp now tests LTM symbol search and actual history retrieval.
+- Hides the harmless HTTP 501 optional MCP session-termination warning during the test.
